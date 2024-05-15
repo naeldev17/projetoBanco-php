@@ -2,8 +2,13 @@
 
 namespace Projeto\Banco\Modelo\Conta;
 
-class Endereco
+use Projeto\Banco\Modelo\AcessoPropriedades;
+
+final class Endereco
 {
+
+  use AcessoPropriedades;
+
   private string $cidade;
   private string $bairro;
   private string $rua;
@@ -37,4 +42,13 @@ class Endereco
   {
     return $this->numero;
   }
+
+  public function __toString()
+  {
+    return "{$this->rua}, {$this->numero}, {$this->bairro}, {$this->cidade}";
+  }
+
+
+
+
 }

@@ -4,12 +4,15 @@ namespace Projeto\Banco\Modelo;
 
 class Pessoa
 {
+  
+  use AcessoPropriedades;
+
   protected $nome;
   private $cpf;
 
   public function __construct(string $nome, CPF $cpf)
   {
-    $this->validaNomeTitular($nome);
+    $this->validaNome($nome);
     $this->nome = $nome;
     $this->cpf = $cpf;
   }
@@ -24,7 +27,7 @@ class Pessoa
     return $this->cpf->verNumero();
   }
 
-  protected function validaNomeTitular(string $nomeTitular)
+  protected function validaNome(string $nomeTitular)
   {
     if (strlen($nomeTitular) < 5) {
       print("nome precisa ter mais do que 5 caracteres");

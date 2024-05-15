@@ -2,9 +2,13 @@
 
 namespace Projeto\Banco\Modelo\Conta;
 
+use Exception;
+use Projeto\Banco\Modelo\Conta\SaldoInsuficienteException as ContaSaldoInsuficienteException;
+use SaldoInsuficienteException;
+
 abstract class Conta
 {
-  private $titular;
+  private Titular $titular;
   protected float $saldo;
   private static $numeroDeContas = 0;
 
@@ -24,12 +28,10 @@ abstract class Conta
 
   public function sacar(float $valorASacar)
   {
-
     $tarifaSaque = $valorASacar * $this->percentualTarifa();
     $valorSaque = $valorASacar + $tarifaSaque;
     if ($valorASacar > $this->saldo) {
-      print("Saldo indisponivel");
-      return;
+      throw new ContaSaldoInsuficienteException($valorSaque, $this->saldo);
     }
     $this->saldo -= $valorSaque;
   }
@@ -37,12 +39,11 @@ abstract class Conta
   public function depositar(float $valorADepositar): void
   {
     if ($valorADepositar < 0) {
-      print("Valor precisa ser positivo");
+      throw new \InvalidArgumentException();
       return;
     }
     $this->saldo += $valorADepositar;
   }
-
   
   public function recuperarSaldo(): float
   {
@@ -64,8 +65,7 @@ abstract class Conta
     return self::$numeroDeContas;
   }
 
-  abstract function percentualTarifa(): float {
-  }
+  abstract function percentualTarifa(): float;
 }
 
 // $umaConta = new Conta();

@@ -1,7 +1,7 @@
 <?php
 
 spl_autoload_register(function (string $nomeCompletoDaClasse) {
-  $caminhoArquivo = str_replace('Livro', 'avancado.ex', $nomeCompletoDaClasse);
+  $caminhoArquivo = str_replace('Projeto\\Atividade', 'Modulos', $nomeCompletoDaClasse);
   $caminhoArquivo = str_replace('\\', DIRECTORY_SEPARATOR, $caminhoArquivo);
   $caminhoArquivo .= '.php';
 

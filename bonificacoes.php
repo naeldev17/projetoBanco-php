@@ -2,31 +2,39 @@
 
 require_once 'autoload.php';
 
-use Projeto\Banco\Modelo\{CPF, Funcionario};
-use Projeto\Banco\Service\ControladorDeBonificacoes;
+use Projeto\Banco\Modelo\{CPF};
+use Projeto\Banco\Modelo\Funcionario\{Diretor, Gerente, Desenvolvedor, EditorVideo};
+use Projeto\Banco\Service\ControladorDeBonificadores;
 
-$umFuncionario = new Funcionario(
-  nome: 'Nael',
-  new CPF(numero: '123.456.789-10'),
-  cargo: 'Desenvolvedor',
+$umFuncionario = new Desenvolvedor(
+  nome: 'Nael D',
+  cpf: new CPF(numero: '123.456.789-10'),
   salario: 1000
 );
 
-$umaFuncionaria = new Funcionario(
+$umFuncionario->sobeDeNivel();
+
+$umaFuncionaria = new Gerente(
   nome: 'Pati',
-  new CPF(numero: '453.326.654-40'),
-  cargo: 'Gerente',
+  cpf: new CPF(numero: '453.326.654-40'),
   salario: 3000
 );
 
 $umDiretor = new Diretor (
   nome: 'Ana Paula',
-  new CPF(numero: '123.421.432-12'),
-  cargo: 'Diretor',
+  cpf: new CPF(numero: '123.421.432-12'),
   salario: 5000
 );
 
-$controlador = new ControladorDeBonificacoes();
+$umEditor = new EditorVideo(
+  nome: 'Paulo',
+  cpf: new CPF(numero: '232.123.453-23'),
+  salario: 1500
+);
+
+$controlador = new ControladorDeBonificadores();
 $controlador->adicionaBonificacaoDe($umFuncionario);
 $controlador->adicionaBonificacaoDe($umaFuncionaria);
 $controlador->adicionaBonificacaoDe($umDiretor);
+$controlador->adicionaBonificacaoDe($umEditor);
+

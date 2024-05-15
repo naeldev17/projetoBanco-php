@@ -1,5 +1,7 @@
 <?php
 
+namespace Projeto\Atividade;
+
 class Livro
 {
   public string $titulo;
@@ -37,19 +39,19 @@ class Livro
     $this->ano = $ano;
   }
 
-  public function getDescricao(): string
-  {
-    return $this->descricao;
-  }
+  // public function getDescricao(): string
+  // {
+  //   return $this->descricao;
+  // }
 
-  public function setDescricao(string $descricao): void
-  {
-    $this->descricao = $descricao;
-  }
+  // public function setDescricao(string $descricao): void
+  // {
+  //   $this->descricao = $descricao;
+  // }
 
   public function imprimirInformacoes(): void
   {
-    print "Título: {$this->getTitulo()} \nAutor: {$this->getAutor()} \nAno: {$this->getAno()} \nDescricao: {$this->getDescricao()}\n";
+    print "Descricao: \no livro cujo seu título é: '{$this->getTitulo()}', foi escrito pelo Autor: '{$this->getAutor()}', no ano de '{$this->getAno()}' \n";
   }
 }
 

@@ -1,5 +1,7 @@
 <?php
 
+namespace Projeto\Atividade;
+
 class Carro
 {
 
